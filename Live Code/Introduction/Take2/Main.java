@@ -9,8 +9,10 @@ public class Main {
     //ILLEGAL because Square is not ColoredSquare
     //ColoredSquare aColoredSquare = new Square(10);
 
+    System.out.println(aColoredSquare); //Which toString is called?
 
     System.out.println(aSquare); //Which toString is called?
-    System.out.println(aColoredSquare); //Which toString is called?
+
+    //Let's create an array of Squares
   }
 }
