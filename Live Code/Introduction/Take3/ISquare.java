@@ -1,14 +1,10 @@
-//Square<T> is a generic type
-//T is a (formal) type parameter
-//Square<Double> is a parameterized type
-//Square is a raw type <== DON'T USE RAW TYPES
-public class Square<T extends Number>
-              implements Measurable, Comparable<Square<T>>{
+public class ISquare 
+      implements Measurable {
 
-  private T sideLength;
+  private Integer sideLength;
 
   //parameterized constructor
-  public Square(T sideLength){
+  public ISquare(Integer sideLength){
     this.sideLength = sideLength;
   }
   /**
@@ -23,7 +19,7 @@ public class Square<T extends Number>
     * @return the perimeter of the shape
   **/
   public Double getPerimeter(){
-    return sideLength.doubleValue() * 4;
+    return sideLength * 4.0;
   }
 
   //Overriding
@@ -32,7 +28,7 @@ public class Square<T extends Number>
            " and perimeter: " + getPerimeter();
   }
 
-  public int compareTo(Square<T> other){
+  public int compareTo(Measurable other){
     return getArea().compareTo(other.getArea());
   }
 }

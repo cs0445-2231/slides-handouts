@@ -1,13 +1,12 @@
-public class ColoredSquare<T extends Number>
-            extends Square<T> {
+public class ColoredSquare extends ISquare {
   private String color;
 
-  public ColoredSquare(T sideLength){
+  public ColoredSquare(Integer sideLength){
     super(sideLength);
   }
 
   //Overloading
-  public ColoredSquare(T sideLength, String color){
+  public ColoredSquare(Integer sideLength, String color){
     //ILLEGAL because sideLength is private in Square
     //this.sideLength = sideLength;
 

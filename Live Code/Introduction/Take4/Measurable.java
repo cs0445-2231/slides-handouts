@@ -1,7 +1,7 @@
 /**
  * An interface of shapes that have an area and a perimeter
 **/
-public interface Measurable extends Comparable<Measurable>{
+public interface Measurable {
   public final static String DEFAULT_NAME = "MyShape";
   /**
     * @return the area of the shape
