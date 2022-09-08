@@ -14,5 +14,16 @@ public class Main {
     System.out.println(aSquare); //Which toString is called?
 
     //Let's create an array of Squares
+    Square[] squares = new Square[5];
+    squares[0] = new Square(10);
+    squares[1] = new ColoredSquare(20, "Red");
+    squares[2] = new Square();
+    squares[3] = new ColoredSquare(20, "Blue");
+    squares[4] = new Square(50);
+
+    for(Square s : squares){
+      System.out.println(s);
+    }
+
   }
 }
