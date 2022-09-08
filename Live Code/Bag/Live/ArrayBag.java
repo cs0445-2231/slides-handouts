@@ -1,11 +1,17 @@
 public final class ArrayBag<T> implements BagInterface<T> {
+  final private int DEFAULT_CAPACITY = 10;
+  private T[] bag; //physical size is bag.length
+  private int numberOfItems; //logical size
 
   public ArrayBag(){
-    //TODO
+    this(DEFAULT_CAPACITY);
   }
 
   public ArrayBag(int initialCapacity){
-    //TODO
+    @SuppressWarnings("unchecked")
+    T[] temp = (T[]) new Object[initialCapacity];
+    bag = temp;
+    numberOfItems = 0;
   }
 
   //Copy constructor

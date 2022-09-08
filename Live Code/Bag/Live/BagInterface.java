@@ -6,7 +6,7 @@ public interface BagInterface<T>  {
 
   /** Adds an item to the bag if possible
     * @param item the item to be added
-    * @return true if adding was sucessful, or false otherwise
+    * @return true if adding was sucessful, or false if the bag is full
     */
   public boolean add(T item);
 

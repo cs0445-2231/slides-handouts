@@ -45,7 +45,7 @@ public class Main {
 
   }
 
-  public static <T extends Comparable<T>> T getMin(T[] items){
+  public static <T extends Comparable<? super T>> T getMin(T[] items){
     //Without "? super T", can we call the method with a ColoredSquare[]? why?
     T result = null;
     if(items.length > 0){
