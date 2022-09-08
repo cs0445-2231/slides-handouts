@@ -29,7 +29,7 @@ public class Square {
   }
 
   /**
-    * set the side length of the square 
+    * set the side length of the square
     * and update area and perimeter
   **/
   public void setSideLength(Integer sideLength){
@@ -61,9 +61,9 @@ public class Square {
 
   //Overriding toString of Object
   public String toString(){
-    return "I'm a square of side length " + 
-           sideLength + " inches, area " + 
-           getArea() + " sq. inches and perimeter " + 
+    return "I'm a square of side length " +
+           sideLength + " inches, area " +
+           getArea() + " sq. inches and perimeter " +
            getPerimeter() + " inches.";
   }
 
@@ -71,31 +71,34 @@ public class Square {
     boolean result = false;
     if(other instanceof Square){
       Square s = (Square) other;
-      result = sideLength.equals(s.sideLength) && area.equals(s.area) 
+      result = sideLength.equals(s.sideLength) && area.equals(s.area)
                && perimeter.equals(s.perimeter);
       //What happens if we use sideLength == s.sideLength?
+      //== is comparing addresses, even if the value of the two ints are the same, if the memory addresses of the objects are different it wil return false
     }
     return result;
   }
 
-  //Make an independent copy of this Square object. To use this method, 
-  //one can call Square anotherSquare = aSquare.clone(). 
-  //The code below performs a shallow 
+  //Make an independent copy of this Square object. To use this method,
+  //one can call Square anotherSquare = aSquare.clone().
+  //The code below performs a shallow
   //copy but is OK since Square has only immutable fields
   public Object clone(){
-    Square copy = new Square(); 
-    //The call below changes sideLength (area and perimter change as well). 
+    Square copy = new Square();
+    //The call below changes sideLength (area and perimter change as well).
     // This will cause the copy to point to
     //different objects than this
     copy.setSideLength(sideLength);
     return copy;
     //copy != this but copy.equals(this)
+
   }
 
   //Another way of copying objects is by using a Copy Constructor. To use it,
   //one can Square anotherSquare = new Square(aSquare)
   public Square(Square other){
     sideLength = (Integer)other.sideLength;//This is shallow but is OK because Integer is immutable
+    //immutable = you cannot modify the object after the object is created 
     area = (Integer)other.area;
     perimeter = (Integer)other.perimeter;
   }
