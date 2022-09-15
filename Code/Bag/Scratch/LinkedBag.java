@@ -1,11 +1,9 @@
 public class LinkedBag<T> implements BagInterface<T>{
 
-  private Node firstNode;
-  private int size;
+//TODO
 
   public LinkedBag(){
-    firstNode = null;
-    size=0;
+   //TODO
   }
 
   /** Adds an item to the bag if possible
@@ -13,10 +11,7 @@ public class LinkedBag<T> implements BagInterface<T>{
     * @return true if adding was sucessful, or false otherwise
     */
   public boolean add(T item){
-    boolean result = true;
-    firstNode = new Node(item, firstNode);
-    size++;
-    return result;
+    //TODO
   }
 
   /** Removes an aribtrary instance of a given item from the bag.
@@ -24,34 +19,14 @@ public class LinkedBag<T> implements BagInterface<T>{
     * @return the removed item, or null if item is not in the bag
     */
   public T remove(T item){
-    T result = null;
-    if(!isEmpty()){
-      //go to the node containing item
-      Node toRemove = referenceTo(item);
-      if(toRemove != null){
-        //save the value into result
-        result = toRemove.data;
-        //replace by firstNode's data
-        toRemove.data = firstNode.data;
-        //remove first node
-        firstNode = firstNode.next;
-        size--;
-      }
-    }
-    return result;
+    //TODO
   }
 
   /** Removes an arbitrary item from the Bag
     * @return the removed item, or null if the bag is empty
     */
   public T remove(){
-    T result = null;
-    if(!isEmpty()){
-      result = firstNode.data;
-      firstNode = firstNode.next;
-      size--;
-    }
-    return result;
+    //TODO
   }
 
   public int size(){
@@ -63,45 +38,22 @@ public class LinkedBag<T> implements BagInterface<T>{
   }
 
   public boolean isFull(){
-    return false;
+    //TODO
   }
 
-  //runtime = 3 + 3n + x (x is the frequency)
   public int getFrequencyOf(T item){
-    int result = 0;
-    Node current = firstNode;
-    while(current != null){
-        if(current.data.equals(item)){
-          result++;
-        }
-        current = current.next;
-    }
-    /* while(firstNode != null){
-      firstNode = firstNode.next;
-    } */ // <= DON'T DO THAT
-    return result;
+   //TODO
   }
 
   public boolean contains(T item){
-    return referenceTo(item) != null ;
+    //TODO
   }
 
   public void clear(){
-    firstNode = null;
-    size=0;
-  }
+    //TODO
 
   public T[] toArray(){
-    @SuppressWarnings("unchecked")
-    T[] result = (T[])new Object[size];
-    int index = 0;
-    Node current = firstNode;
-    while(current != null){
-      result[index] = current.data;
-      current = current.next;
-      index++;
-    }
-    return result;
+    //TODO
   }
 
   public BagInterface<T> intersection(BagInterface<T> anotherBag){
@@ -117,16 +69,7 @@ public class LinkedBag<T> implements BagInterface<T>{
   }
 
   private Node referenceTo(T item){
-    Node result = null;
-    Node current = firstNode;
-    while(current != null){
-      if(current.data.equals(item)){
-        result = current;
-        break;
-      }
-      current = current.next;
-    }
-    return result;
+    //TODO
 
   }
 
@@ -143,11 +86,4 @@ public class LinkedBag<T> implements BagInterface<T>{
       this.next = next;
     }
   }
-
-  /*
-    for(int i=n; i>0; i = i/2 ){
-
-    }
-  */
-
 }
