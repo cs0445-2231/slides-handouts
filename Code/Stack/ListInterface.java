@@ -1,14 +1,5 @@
 public interface ListInterface<T> {
 
-  /** Sees whether this list contains a given entry.
-   @param anEntry  The object that is the desired entry.
-   @return  True if the list contains anEntry, or false if not. */
-  public boolean contains(T anEntry);
-   
-  /** Gets the length of this list.
-     @return  The integer number of entries currently in the list. */
-  public int getLength();
-      
   /** Sees whether this list is empty.
      @return  True if the list is empty, or false if not. */
   public boolean isEmpty();
@@ -67,5 +58,14 @@ public interface ListInterface<T> {
       @return  A newly allocated array of all the entries in the list.
               If the list is empty, the returned array is empty. */
   public T[] toArray();   
+
+  /** Sees whether this list contains a given entry.
+   @param anEntry  The object that is the desired entry.
+   @return  True if the list contains anEntry, or false if not. */
+   public boolean contains(T anEntry);
+   
+   /** Gets the length of this list.
+      @return  The integer number of entries currently in the list. */
+   public int getLength(); 
 
 }

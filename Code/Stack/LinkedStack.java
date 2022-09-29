@@ -1,61 +1,43 @@
 public final class LinkedStack<T>
                    implements StackInterface<T>{
-  private Node top;
-  private int size;
+  private Node topNode;
 
   public LinkedStack(){
-    clearHelper();
+    initializeFields();
   }
 
-  public boolean push(T item){
-    boolean result = true;
-    top = new Node(item, top);
-    size++;
-    return result;
+  public void push(T item){
+    //TODO
   }
 
   public T pop(){
-    T result = null;
-    if(!isEmpty()){
-      result = top.data;
-      top = top.next;
-      size--;
-    }
-    return result;
+    //TODO
+    return null;
   }
 
-  public T top(){
-    T result = null;
-    if(!isEmpty()){
-      result = top.data;
-    }
-    return result;
-  }
-
-  public boolean isEmpty(){
-    return size == 0;
-  }
-
-  public boolean isFull(){
-    return false;
-  }
-
-  public int size(){
-    return size;
+  public T peek(){
+    //TODO
+    return null;
   }
 
   public void clear(){
-    clearHelper();
+    //TODO
   }
 
-  private void clearHelper(){
-    top = null;
-    size = 0;
+  public boolean isEmpty(){
+    //TODO
+    return false;
   }
+
+  
+ private void initializeFields(){
+  topNode = null;
+ }
 
   private class Node{
     private T data;
     private Node next;
+
     private Node(T data){
       this(data, null);
     }

@@ -1,74 +1,58 @@
+import java.util.Arrays;
+
 public final class ArrayStack<T>
              implements StackInterface<T> {
       private final static int MAX_CAPACITY = 1000;
       private final static int DEFAULT_CAPACITY = 10;
       private T[] stack;
-      private int topIndex;
+      private int topIndex; //the top of the stack in the array
       private boolean initialized;
 
       public ArrayStack(){
         this(DEFAULT_CAPACITY);
       }
       public ArrayStack(int capacity){
-          checkCapacity(capacity);
+          if(capacity < DEFAULT_CAPACITY){
+            capacity = DEFAULT_CAPACITY;
+          } else {
+            checkCapacity(capacity);
+          }
+          
           @SuppressWarnings("unchecked")
-          T[] temp = (T[])new Object[capacity];
+          T[] temp = (T[]) new Object[capacity];
           stack = temp;
-          topIndex = 0;
+
+          topIndex = -1;
           initialized = true;
       }
 
-      public boolean push(T item){
+      public void push(T item){
         checkInitialized();
-        boolean result = false;
-        if(!isFull()){
-          stack[topIndex] = item;
-          topIndex++;
-          result = true;
-        }
-        return result;
+        //TODO
       }
 
       public T pop(){
-        T result = null;
-        if(!isEmpty()){
-          result = stack[topIndex-1];
-          stack[topIndex-1] = null;
-          topIndex--;
-        }
-        return result;
+        checkInitialized();
+        //TODO
+        return null;
       }
 
-      public T top(){
-        T result = null;
-        if(!isEmpty()){
-          result = stack[topIndex-1];
-        }
-        return result;
-      }
-
-      public boolean isEmpty(){
-        return topIndex == 0;
-      }
-
-      public boolean isFull(){
-        return topIndex == stack.length;
-      }
-
-      public int size(){
-        return topIndex;
+      public T peek(){
+        checkInitialized();
+        //TODO
+        return null;
       }
 
       public void clear(){
-        while(!isEmpty()){
-          pop();
-        }
-
-        // int size = size();
-        // for(int i=0; i<size; i++){
-        //   pop();
-        // }
+        checkInitialized();
+        //TODO
       }
+
+      public boolean isEmpty(){
+        //TODO
+        return false;
+      }
+
 
       private void checkCapacity(int capacity){
         if(capacity <= 0 || capacity > MAX_CAPACITY){
@@ -81,6 +65,13 @@ public final class ArrayStack<T>
         if(!initialized){
           throw new SecurityException(
                 "Attempting to access an uninitialized ArrayStack");
+        }
+      }
+
+      private void ensureCapacity(){
+        if(topIndex >= stack.length-1){//array is full
+          checkCapacity(2*stack.length);
+          stack = Arrays.copyOf(stack, 2*stack.length);
         }
       }
 }
