@@ -28,29 +28,39 @@ public final class ArrayStack<T>
 
       public void push(T item){
         checkInitialized();
-        //TODO
+        stack[topIndex + 1] = item;
+        ensureCapacity();
       }
 
       public T pop(){
         checkInitialized();
-        //TODO
-        return null;
+        if(isEmpty()){
+          throw new StackEmptyException("stack is empty");
+        }
+        T result = stack[topIndex];
+        stack[topIndex] = null;
+        topIndex--;
+        return result;
       }
 
       public T peek(){
         checkInitialized();
-        //TODO
-        return null;
+        if(isEmpty()){
+          throw new StackEmptyException("stack is empty");
+        }
+        
+        return stack[topIndex];
       }
 
       public void clear(){
         checkInitialized();
-        //TODO
+        while(!isEmpty()){
+          pop();
+        }
       }
 
       public boolean isEmpty(){
-        //TODO
-        return false;
+        return topIndex == -1;
       }
 
 

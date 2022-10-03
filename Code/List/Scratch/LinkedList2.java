@@ -1,9 +1,10 @@
-public class LinkedList<T> implements ListInterface<T> {
+public class LinkedList2<T> implements ListInterface<T> {
 
     private Node firstNode;
+    private Node lastNode;
     private int numberOfEntries;
 
-    public LinkedList(){
+    public LinkedList2(){
         initializeFields(); //has to be private to avoid a child class from
                             //changing the constructor behavior
     }
@@ -18,14 +19,12 @@ public class LinkedList<T> implements ListInterface<T> {
             The list's size is increased by 1.
             @param newEntry  The object to be added as a new entry. */
     public void add(T newEntry){
-        //best-case: 3 => O(1)
-        //worst-case: 3 + 1*O(n) = O(n)
         Node newNode = new Node(newEntry); //1
         if(isEmpty()){ //1
             firstNode = newNode; //0 or 1
-        } else {
-            Node lastNode = getNodeAt(numberOfEntries); //0 or 1
+        } else {            
             lastNode.next = newNode;    //o or 1
+            lastNode = newNode;
         }
         numberOfEntries++;//1
 
@@ -155,6 +154,7 @@ public class LinkedList<T> implements ListInterface<T> {
 
     private void initializeFields(){ //O(1)
         firstNode = null; //1
+        lastNode = null;
         numberOfEntries = 0; //1
     }
 

@@ -1,6 +1,6 @@
 public final class ListStack<T>
                    implements StackInterface<T>{
-  private ListInterface list;
+  private ListInterface<T> list;
 
   public ListStack(){
     //TODO

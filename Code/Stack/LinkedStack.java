@@ -7,7 +7,9 @@ public final class LinkedStack<T>
   }
 
   public void push(T item){
-    //TODO
+    Node newNode = new Node(item);
+    topNode.next = newNode;
+    topNode = newNode;
   }
 
   public T pop(){

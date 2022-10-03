@@ -67,11 +67,11 @@ public class Calculator{
         } else if(c == '(' || c == '^' || operatorStack.isEmpty()){
           operatorStack.push(c);
         } else {
-          Character topOperator = operatorStack.top();
+          Character topOperator = operatorStack.peek();
           while(!operatorStack.isEmpty() &&
                 precedence(topOperator.charValue()) >= precedence(c)){
             popOperator(operatorStack, operandStack);
-            topOperator = operatorStack.top();
+            topOperator = operatorStack.peek();
           }
           operatorStack.push(c);
         }
@@ -80,7 +80,7 @@ public class Calculator{
     while(!operatorStack.isEmpty()){
       popOperator(operatorStack, operandStack);
     }
-    return operandStack.top();
+    return operandStack.peek();
   }
 
   private boolean isOpening(char paren){
