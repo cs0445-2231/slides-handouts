@@ -3,30 +3,36 @@ public final class ListStack<T>
   private ListInterface<T> list;
 
   public ListStack(){
-    //TODO
+    list = new LinkedList<>();
   }
 
   public void push(T item){
-    //TODO
+    list.add(1, item);
   }
 
   public T pop(){
-    //TODO
-    return null;
+    if(isEmpty()){
+      throw new StackEmptyException("stack is empty while popping");
+    }
+    assert !isEmpty();
+    return list.remove(1);
   }
 
   public T peek(){
-    //TODO
-    return null;
+    if(isEmpty()){
+      throw new StackEmptyException("stack is empty while popping");
+    }
+    assert !isEmpty();
+
+    return list.getEntry(1);
   }
 
   public void clear(){
-    //TODO
+    list.clear();
   }
 
   public boolean isEmpty(){
-    //TODO
-    return false;
+    return list.isEmpty();
   } 
  
 }

@@ -8,27 +8,33 @@ public final class LinkedStack<T>
 
   public void push(T item){
     Node newNode = new Node(item);
-    topNode.next = newNode;
+    newNode.next = topNode;
     topNode = newNode;
   }
 
   public T pop(){
-    //TODO
-    return null;
+    if(isEmpty()){
+      throw new StackEmptyException("empty stack while attempting to pop");
+    }
+    assert topNode != null;
+    T result = topNode.data;
+    topNode = topNode.next;
+    return result;
   }
 
   public T peek(){
-    //TODO
-    return null;
+    if(isEmpty()){
+      throw new StackEmptyException("empty stack while attempting to pop");
+    }
+    return topNode.data;
   }
 
   public void clear(){
-    //TODO
+    topNode = null;
   }
 
   public boolean isEmpty(){
-    //TODO
-    return false;
+    return topNode == null;
   }
 
   
