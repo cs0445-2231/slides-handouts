@@ -51,12 +51,21 @@ public class Recursion {
     return result;
   }
 
-  public static int power(int x, int y){
+  public static int powerIterative(int x, int n){
+    assert(n >= 0);
     int result = 1;
-    if(y > 0){
-      int temp = power(x, y/2);
+    for(int i=0; i<n; i++){
+      result *= x;
+    }
+    return result;
+  }
+
+  public static int power(int x, int n){
+    int result = 1;
+    if(n > 0){
+      int temp = power(x, n/2);
       result = temp * temp;
-      if(y%2 == 1){
+      if(n%2 == 1){ //is n odd?
         result = x * result;
       }
     }
