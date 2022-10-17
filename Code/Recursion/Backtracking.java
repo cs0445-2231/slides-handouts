@@ -7,8 +7,8 @@ final public class Backtracking {
 
   public static void main(String[] args){
     //findPIN();
-    //eightQueens();
-    sudoku();
+    eightQueens();
+    //sudoku();
   }
 
   public static void findPIN(){

@@ -4,7 +4,20 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "java",
+            "name": "Launch Recursion",
+            "request": "launch",
+            "mainClass": "Recursion",
+            "projectName": "slides-handouts_489bd2ae"
+        },
+        {
+            "type": "java",
+            "name": "Launch Backtracking",
+            "request": "launch",
+            "mainClass": "Backtracking",
+            "projectName": "slides-handouts_489bd2ae"
+        },
         {
             "type": "java",
             "name": "Launch Current File",

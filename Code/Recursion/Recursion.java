@@ -1,23 +1,24 @@
 public class Recursion {
 
   public static void main(String[] args){
-    countDown(10);
-    display(new Integer[]{1, 6, 7, 10});
-    int n = 5;
-    System.out.println(n + "! = " + factorial(n));
-    n = 1;
-    System.out.println(n + "! = " + factorial(n));
-    int x=2;
-    int y=8;
-    System.out.println(x+"^"+y+" = " + power(x, y));
-    x=2;
-    y=9;
-    System.out.println(x+"^"+y+" = " + power(x, y));
-    n = 10;
-    System.out.println("fib("+n+") = " + fib(n));
-    displayArray2(new Integer[]{1, 6, 7, 10});
-    displayArray2(new Integer[]{1, 13, 6, 7, 10});
-    towersOfHanoi(3, 0, 2, 1);
+    // countDown(10);
+    // display(new Integer[]{1, 6, 7, 10});
+    // int n = 5;
+    // System.out.println(n + "! = " + factorial(n));
+    // n = 1;
+    // System.out.println(n + "! = " + factorial(n));
+    // int x=2;
+    // int y=8;
+    // System.out.println(x+"^"+y+" = " + power(x, y));
+    // x=2;
+    // y=9;
+    // System.out.println(x+"^"+y+" = " + power(x, y));
+    // n = 10;
+    // System.out.println("fib("+n+") = " + fib(n));
+    // displayArray2(new Integer[]{1, 6, 7, 10});
+    // displayArray2(new Integer[]{1, 13, 6, 7, 10});
+    // towersOfHanoi(3, 0, 2, 1);
+    towersOfHanoi2(4, 0, 2, 1);
   }
 
   private static void countDown(int n){
@@ -111,4 +112,17 @@ public class Recursion {
         towersOfHanoi(n-1, aux, end, start);
       }
   }
+
+  public static void towersOfHanoi2(
+    int n, int start, int end, int aux){
+    while(n > 0){
+      towersOfHanoi2(n-1, start, aux, end);
+      System.out.println(
+        "Move one disk from " + start + " to " + end);
+      n = n-1;
+      int t = start;
+      start = aux;
+      aux = t;
+    }
+}
 }
