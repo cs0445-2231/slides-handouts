@@ -18,7 +18,28 @@ public class Recursion {
     // displayArray2(new Integer[]{1, 6, 7, 10});
     // displayArray2(new Integer[]{1, 13, 6, 7, 10});
     // towersOfHanoi(3, 0, 2, 1);
-    towersOfHanoi2(4, 0, 2, 1);
+    //towersOfHanoi2(4, 0, 2, 1);
+    Integer[] data = {10, 5, -1, 6, 7, 8};
+    assert search(data, -1, 0, data.length-1)==true;
+    assert search(data, 11, 0, data.length-1) == false;
+    assert search(data, 10, 1, data.length-1)==false;
+    assert search(data, 8, 1, 4)==false;
+    assert search(data, 6, 3, 3)==true;
+    assert search(data, 10, 5, 4) == false;
+
+
+    Node<Integer> chain = new Node<>(10);
+    chain.next = new Node<>(5);
+    chain.next.next = new Node<>(-1);
+    chain.next.next.next = new Node<>(6);
+    chain.next.next.next.next = new Node<>(7);
+    chain.next.next.next.next.next = new Node<>(8);
+
+    assert search(chain, -1) == true;
+    assert search(chain, 11) == false;
+    assert search(chain.next, 10) == false;
+    assert search(chain.next.next.next, 6) == true;
+
   }
 
   private static void countDown(int n){
@@ -75,9 +96,9 @@ public class Recursion {
 
   public static int fib(int n){
     int result = 1;
-    if(n == 0){
-      result = 0;
-    } else if(n > 1){
+    if(n >= 1){
+      result = 1;
+    } else {
       result = fib(n-1) + fib(n-2);
     }
     return result;
@@ -124,5 +145,70 @@ public class Recursion {
       start = aux;
       aux = t;
     }
-}
+  }
+
+  public static <T> boolean search(T[] data, T target){
+    return search(data, target, 0, data.length-1);
+  }
+
+  /*
+   * searches for target inside the region of array 
+   * between start and end inclusive
+   * @param array: collection of items to search within
+   * @param target: the desired item to find
+   * @param start: the inlcusive starting index of the search region
+   * @param end: the inclusive ending index of the search region
+   * @return true if item is found in array; false otherwise
+   */
+  private static <T> boolean search(T[] array, T target, int start, int end){
+    boolean result = false;
+
+    if(start > end){ //empty region
+      result = false;
+    } else if(array[start].equals(target)){
+      result = true;
+    } else {
+      result = search(array, target, start+1, end);
+    }
+
+    return result;
+
+  }
+
+  /*
+   * searches for target inside the region of array 
+   * between start and end inclusive
+   * @param array: collection of items to search within
+   * @param target: the desired item to find
+   * @param start: the inlcusive starting index of the search region
+   * @param end: the inclusive ending index of the search region
+   * @return true if item is found in array; false otherwise
+   */
+  private static <T> boolean search(Node<T> firstNode, T target){
+    boolean result = false;
+
+    if(firstNode == null){
+      result = false;
+    } else if(firstNode.data.equals(target)){
+      result = true;
+    } else {   
+      result = search(firstNode.next, target);
+    }
+    return result;
+
+  }
+
+  private static class Node<T>{
+    private T data;
+    private Node<T> next;
+
+    private Node(T data){
+      this(data, null);
+    }
+
+    private Node(T data, Node<T> next){
+      this.data = data;
+      this.next = next;
+    }
+  }
 }
