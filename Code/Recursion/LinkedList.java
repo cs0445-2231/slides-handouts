@@ -169,6 +169,7 @@ public class LinkedList<T> implements ListInterface<T> {
 
         Node last = reverseHelper(first.next);
         last.next = first;
+        first.next = null;
         return first;
 
     }
