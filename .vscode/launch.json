@@ -6,6 +6,15 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch WordSearch",
+            "request": "launch",
+            "mainClass": "WordSearch",
+            "projectName": "slides-handouts_489bd2ae",
+            "args": "test.txt",
+            "cwd": "${workspaceFolder}/Code/Recursion"
+        },
+        {
+            "type": "java",
             "name": "Launch Recursion",
             "request": "launch",
             "mainClass": "Recursion",
