@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Misc",
+            "request": "launch",
+            "mainClass": "Misc",
+            "projectName": "slides-handouts_489bd2ae"
+        },
+        {
+            "type": "java",
+            "name": "Launch Misc",
+            "request": "launch",
+            "mainClass": "Code.Misc",
+            "projectName": "slides-handouts_489bd2ae"
+        },
+        {
+            "type": "java",
             "name": "Launch WordSearch",
             "request": "launch",
             "mainClass": "WordSearch",

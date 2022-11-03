@@ -76,12 +76,12 @@ public class WordSearch {
                     System.out.println("Word Found!");
                     printGrid();
                     result = true;
-                    //break;
+                   // break;
                 }
                 if (isPrefix(current.toString(), wordToFind)){
                     if(solve(nextRow, nextCol, current)){
                         result = true;
-                        //break;
+                       // break;
                     }
                 }
                 

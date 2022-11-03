@@ -49,15 +49,16 @@ public class LinkedBag<T> implements BagInterface<T>{
   }
 
   public int size(){
-    return size;
+    return numberOfItems;
   }
 
   public boolean isEmpty(){
-    return size == 0;
+    return numberOfItems == 0;
   }
 
   public boolean isFull(){
     //TODO
+    return false;
   }
 
   public int getFrequencyOf(T item){
