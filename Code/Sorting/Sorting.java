@@ -105,12 +105,13 @@ public class Sorting{
 
   private <T extends Comparable<? super T>>
   void insertInOrder(T[] array, int begin, int end, T item){
-    int index = end;
-    while(index >= begin && array[index].compareTo(item)>0){ //(>=) makes it unstable sort
-      array[index+1] = array[index];
+    int index = end+1;
+
+    while(index > begin && array[index-1].compareTo(item)>0){ //(>=) makes it unstable sort
+      array[index] = array[index-1];
       index--;
     }
-    array[index+1] = item;
+    array[index] = item;
   }
 
   private <T extends Comparable<? super T>>
@@ -123,6 +124,8 @@ public class Sorting{
 
   private <T extends Comparable<? super T>>
   void recursiveInsertInOrder(T[] array, int begin, int end, T item){
+
+
     if(item.compareTo(array[end]) >= 0){ // (>) makes it unstable sort
       array[end+1] = item;
     } else if(begin == end){
@@ -190,14 +193,14 @@ public class Sorting{
 
   private <T extends Comparable<? super T>>
   Node<T> chainInsertInOrder(Node<T> sorted, Node<T> item){
-    if(sorted.data.compareTo(item.data) >= 0){
+    if(sorted.data.compareTo(item.data) > 0){
       item.next = sorted;
       sorted = item;
     } else {
       Node<T> current = sorted;
       while(current != null &&
       current.next != null &&
-      current.next.data.compareTo(item.data) < 0){
+      current.next.data.compareTo(item.data) <= 0){
         current = current.next;
       }
       item.next = current.next;
