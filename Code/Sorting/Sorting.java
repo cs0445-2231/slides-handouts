@@ -42,7 +42,7 @@ public class Sorting{
     T smallest = array[first];
     int indexOfSmallest = first;
     for(int i=first+1; i<=last; i++){
-      if(array[i].compareTo(smallest) < 0){ // (<=) makes it unstable sort
+      if(array[i].compareTo(smallest) < 0){
         smallest = array[i];
         indexOfSmallest = i;
       }
@@ -55,7 +55,7 @@ public class Sorting{
     T largest = array[first];
     int indexOfLargest = first;
     for(int i=first+1; i<=last; i++){
-      if(array[i].compareTo(largest) >= 0){ // (>) makes it unstable sort
+      if(array[i].compareTo(largest) >= 0){ 
         largest = array[i];
         indexOfLargest = i;
       }

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch SortingAlgorithms",
+            "request": "launch",
+            "mainClass": "SortingAlgorithms",
+            "projectName": "slides-handouts_489bd2ae"
+        },
+        {
+            "type": "java",
             "name": "Launch Misc",
             "request": "launch",
             "mainClass": "Misc",
