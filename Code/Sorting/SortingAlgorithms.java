@@ -23,13 +23,18 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
     }
 
     public SortingAlgorithms(T[] data){
-        selectionSort(data, 0, data.length-1);
-        recursiveSelectionSort(data, 0, data.length-1);
+        // selectionSort(data, 0, data.length-1);
+        // recursiveSelectionSort(data, 0, data.length-1);
         Node chain = createChain(data, data.length);
-        selectionSort(chain);
+        // selectionSort(chain);
+        // insertionSort(data, 0, data.length-1);
+        // System.out.println(Arrays.toString(data));
+        // recursiveInsertionSort(data, 0, data.length-1);
+        chain = insertionSort(chain);
         printChain(chain);
-        insertionSort(data, 0, data.length-1);
-        System.out.println(Arrays.toString(data));
+
+        // System.out.println(Arrays.toString(data));
+
 
     }
     
@@ -183,6 +188,63 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
             index -= 1;
         }
         a[index] = item;
+     }
+
+
+     private void recursiveInsertionSort(T[] a, int start, int end){
+        if(start < end){
+            //start .. end-1 will be sorted
+            recursiveInsertionSort(a, start, end-1);
+            //insert a[end] into that sorted region
+            recursiveInsertInOrder(a, start, end-1, a[end]);
+        }
+     }
+     private void recursiveInsertInOrder(T[] a, int start, int end, T item){
+
+        if(a[end].compareTo(item) <= 0){
+            a[end+1] = item;
+        } else if(start == end){
+            a[end+1] = a[end];
+            a[end] = item;
+        } else {
+            a[end+1] = a[end];
+            recursiveInsertInOrder(a, start, end-1, item);
+        }        
+     }
+
+     public Node insertionSort(Node firstNode){
+        Node sorted = firstNode;
+        if(firstNode != null){
+            Node unsorted = firstNode.next;
+            sorted.next = null;
+    
+            while(unsorted != null){
+                Node temp = unsorted.next;
+                sorted = insertInOrder(sorted, unsorted);
+                unsorted = temp;
+            } 
+        }        
+        return sorted;
+     }
+
+     private Node insertInOrder(Node sorted, Node item){
+        Node result = sorted;
+        Node current = sorted;
+        Node previousNode = null;
+        //if current == null || current.data > item.data stop
+        while(current != null && current.data.compareTo(item.data) <= 0){
+            previousNode = current;
+            current = current.next;
+        }
+
+        if(previousNode != null){
+            previousNode.next = item;
+            item.next = current;
+        } else {
+            item.next = current;
+            result = item;
+        }
+        return result;
      }
 
     private static class Student implements Comparable<Student>{
