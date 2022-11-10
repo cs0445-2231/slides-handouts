@@ -2,12 +2,6 @@ import java.util.Arrays;
 
 public class SortingAlgorithms<T extends Comparable<? super T>> {
 
-    private static Integer[] array = 
-        {20, 10, 0, 30, 15, 1, 2, 90, 9, 35, -1, 3, 15, 4, -4, 0};
-
-    
-
-
     public static void main(String[] args){
         Student[] students = new Student[7];
         students[0] = new Student("foo", 4.0);
@@ -18,23 +12,24 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         students[5] = new Student("foo3", 3.89);
         students[6] = new Student("alice", 4.0);
 
-        SortingAlgorithms<Student> sa = new SortingAlgorithms<>();
-        //sa.selectionSort(students, 0, students.length-1);
-        //sa.recursiveSelectionSort(students, 0, students.length-1);
-        //Node<Student> chain = sa.createChain(students, students.length);
-        //sa.selectionSort(chain);
-        //sa.printChain(chain);
-        sa.insertionSort(students, 0, students.length-1);
-        System.out.println(Arrays.toString(students));
+        new SortingAlgorithms<Student>(students);   
 
-        SortingAlgorithms<Integer> sa2 = new SortingAlgorithms<>();
-        //sa.selectionSort(students, 0, students.length-1);
-        //sa.recursiveSelectionSort(students, 0, students.length-1);
-        //Node<Student> chain = sa.createChain(students, students.length);
-        //sa.selectionSort(chain);
-        //sa.printChain(chain);
-        sa2.insertionSort(array, 0, array.length-1);
-        System.out.println(Arrays.toString(array));
+        Integer[] array = 
+        {20, 10, 0, 30, 15, 1, 2, 90, 9, 35, -1, 3, 15, 4, -4, 0};
+
+        new SortingAlgorithms<Integer>(array);   
+          
+
+    }
+
+    public SortingAlgorithms(T[] data){
+        selectionSort(data, 0, data.length-1);
+        recursiveSelectionSort(data, 0, data.length-1);
+        Node chain = createChain(data, data.length);
+        selectionSort(chain);
+        printChain(chain);
+        insertionSort(data, 0, data.length-1);
+        System.out.println(Arrays.toString(data));
 
     }
     
@@ -96,12 +91,12 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         }
     }
 
-    public void selectionSort(Node<T> firstNode){
-        Node<T> current = firstNode;
+    public void selectionSort(Node firstNode){
+        Node current = firstNode;
         while(current != null){
             //find smallest item in the rest of the chain
             //starting from current
-            Node<T> smallest = smallestNode(current);
+            Node smallest = smallestNode(current);
 
             //swap smallest item with current.data
             swap(current, smallest);
@@ -109,9 +104,9 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         }
     }
 
-    private Node<T> smallestNode(Node<T> firstNode){
-        Node<T> smallest = firstNode;
-        Node<T> current = firstNode;
+    private Node smallestNode(Node firstNode){
+        Node smallest = firstNode;
+        Node current = firstNode;
         while(current != null){
             if(current.data.compareTo(smallest.data) < 0){
                 smallest = current;
@@ -121,21 +116,21 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         return smallest;
     }
 
-    private Node<T> createChain(T[] a, int n){
+    private Node createChain(T[] a, int n){
         if(n == 0){
             return null;
         }
-        Node<T> firstNode = new Node<>(a[0], null);
-        Node<T> current = firstNode;
+        Node firstNode = new Node(a[0], null);
+        Node current = firstNode;
         for(int i=1; i<n; i++){
-            current.next = new Node<>(a[i], null);
+            current.next = new Node(a[i], null);
             current = current.next;
         }
         return firstNode;
     }
     
-    private void printChain(Node<T> firstNode){
-       Node<T> current = firstNode;
+    private void printChain(Node firstNode){
+       Node current = firstNode;
        while(current != null){
         System.out.print(current.data + " ");
         current = current.next;
@@ -148,7 +143,7 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
      * @param first
      * @param second
      */
-    private void swap(Node<T> first, Node<T> second){
+    private void swap(Node first, Node second){
         T temp = first.data;
         first.data = second.data;
         second.data = temp;
@@ -208,11 +203,11 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         }
     }
 
-    private static class Node<T> {
+    private class Node {
         T data;
-        Node<T> next;
+        Node next;
 
-        private Node(T data, Node<T> next){
+        private Node(T data, Node next){
             this.data = data;
             this.next = next;
         }
