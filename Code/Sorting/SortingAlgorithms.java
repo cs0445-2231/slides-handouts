@@ -25,15 +25,18 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
     public SortingAlgorithms(T[] data){
         // selectionSort(data, 0, data.length-1);
         // recursiveSelectionSort(data, 0, data.length-1);
-        Node chain = createChain(data, data.length);
+        //Node chain = createChain(data, data.length);
         // selectionSort(chain);
         // insertionSort(data, 0, data.length-1);
         // System.out.println(Arrays.toString(data));
         // recursiveInsertionSort(data, 0, data.length-1);
-        chain = insertionSort(chain);
-        printChain(chain);
+        //chain = insertionSort(chain);
+        //printChain(chain);
 
-        // System.out.println(Arrays.toString(data));
+        //ShellSort(data, 0, data.length-1);
+        mergeSort(data);
+
+        System.out.println(Arrays.toString(data));
 
 
     }
@@ -245,6 +248,117 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
             result = item;
         }
         return result;
+     }
+
+
+     /** Shell Sort */
+
+     public void ShellSort(T[] a, int start, int end){
+        int n = end - start + 1;
+        for(int space=n/2; space >= 1; space=space/2){
+            if(space %2  == 0){
+                space++;
+            }
+            for(int i=0; i<space; i++){
+                insertionSort(a, start+i, end, space);
+            }
+        }
+     }
+
+     public void insertionSort(T[] a, int start, int end, int space){
+
+        for(int unsorted = start+space; unsorted <= end; unsorted += space){
+            //insert a[unsorted] into the sorted region 
+            //between start and unsorted-1
+            insertInOrder(a, start, unsorted-space, a[unsorted], space);
+        }
+
+     }
+
+     /**
+      * insert item into its sorted position in the sorted region between
+      * start and end inclusive
+      * @param a
+      * @param start
+      * @param end
+      * @param item
+      */
+     private void insertInOrder(T[] a, int start, int end, T item, int space){
+        
+        int index = end+space;
+        //if(index == start || a[index-space].compareTo(item) <= 0) stop
+        while(index > start && a[index-space].compareTo(item) > 0){
+            a[index] = a[index-space];
+            index -= space;
+        }
+        a[index] = item;
+     }
+
+     public void mergeSort(T[] a){
+        @SuppressWarnings("unchecked")
+        T[] output = (T[])new Comparable<?>[a.length];
+        mergeSort(a, 0, a.length-1, output);
+     }
+
+     public void mergeSort(T[] a, int start, int end, T[] temp){
+        int n = end - start + 1;
+        if(n > 1){
+            int mid = start + (end - start)/2;
+            mergeSort(a, start, mid, temp);
+            mergeSort(a, mid+1, end, temp);
+            if(a[mid].compareTo(a[mid+1]) > 0){
+                merge(a, start, mid, end, temp);            }
+        }
+     }
+
+     public void merge(T[] a, int start, int mid, int end, T[] output){
+        int i = start;
+        int j = mid+1;
+        int k = start;
+
+        while(i <= mid && j <= end){
+            if(a[i].compareTo(a[j]) <= 0){
+                output[k] = a[i];
+                i++;
+            } else {
+                output[k] = a[j];
+                j++;
+            }
+            k++;
+        }
+
+        while(i <= mid){
+            output[k] = a[i];
+            i++;
+            k++;
+        }
+
+        while(j <= end){
+            output[k] = a[j];
+            j++;
+            k++;
+        }
+
+        for(int l=start; l<= end; l++){
+            a[l] = output[l];
+        }
+
+
+     }
+
+
+     public void quickSort(T[] a, int start, int end){
+        int n = end - start + 1;
+        if(n > 1){
+            int pivotIndex = partition(a, start, end);
+            quickSort(a, start, pivotIndex-1);
+            quickSort(a, pivotIndex+1, end);
+        }
+     }
+
+
+     public int partition(T[] a, int start, int end){
+        return -1;
      }
 
     private static class Student implements Comparable<Student>{
