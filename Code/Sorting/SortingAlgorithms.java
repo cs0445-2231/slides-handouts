@@ -356,9 +356,43 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         }
      }
 
+     public T findKth(T[] a, int start, int end, int k){
+        int n = end - start + 1;
+        if(n > 1){
+            int pivotIndex = partition(a, start, end);
+            if(pivotIndex == k)
+                return a[pivotIndex];
+            else if(pivotIndex > k){
+                return findKth(a, start, pivotIndex-1, k);
+            } else {
+                return findKth(a, pivotIndex+1, end, k-pivotIndex);
+            }            
+        }
+        return a[start];
+     }
 
      public int partition(T[] a, int start, int end){
-        return -1;
+        T pivot = a[end];
+        int indexFromLeft = start;
+        int indexFromRight = end - 1;
+        boolean done = false;
+
+        while(!done){
+            while(a[indexFromLeft].compareTo(pivot) <= 0){
+                indexFromLeft++;
+            }
+            while(a[indexFromRight].compareTo(pivot) >= 0){
+                indexFromRight--;
+            }            
+            if(indexFromLeft < indexFromRight){
+                swap(a, indexFromLeft, indexFromRight);
+            } else {
+                done = true;
+            }
+        }
+        swap(a, indexFromLeft, end);
+
+        return indexFromLeft;
      }
 
     private static class Student implements Comparable<Student>{
