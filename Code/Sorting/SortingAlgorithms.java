@@ -1,7 +1,9 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class SortingAlgorithms<T extends Comparable<? super T>> {
 
+    private static final int THRESHOLD = 5;
     public static void main(String[] args){
         Student[] students = new Student[7];
         students[0] = new Student("foo", 4.0);
@@ -34,7 +36,8 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         //printChain(chain);
 
         //ShellSort(data, 0, data.length-1);
-        mergeSort(data);
+        //mergeSort(data);
+        quickSort(data, 0, data.length-1);
 
         System.out.println(Arrays.toString(data));
 
@@ -349,50 +352,75 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
 
      public void quickSort(T[] a, int start, int end){
         int n = end - start + 1;
-        if(n > 1){
+        if(n > THRESHOLD){
             int pivotIndex = partition(a, start, end);
             quickSort(a, start, pivotIndex-1);
             quickSort(a, pivotIndex+1, end);
+        } else {
+            insertionSort(a, start, end);
         }
-     }
-
-     public T findKth(T[] a, int start, int end, int k){
-        int n = end - start + 1;
-        if(n > 1){
-            int pivotIndex = partition(a, start, end);
-            if(pivotIndex == k)
-                return a[pivotIndex];
-            else if(pivotIndex > k){
-                return findKth(a, start, pivotIndex-1, k);
-            } else {
-                return findKth(a, pivotIndex+1, end, k-pivotIndex);
-            }            
-        }
-        return a[start];
-     }
+     }     
 
      public int partition(T[] a, int start, int end){
-        T pivot = a[end];
-        int indexFromLeft = start;
-        int indexFromRight = end - 1;
-        boolean done = false;
+        // pivot is last element
+        // int pivotIndex = end;
+        // T pivot = a[pivotIndex];
+        // int indexFromLeft = start;
+        // int indexFromRight = end-1;
 
+        // random pivot
+        // int pivotIndex = 
+        //     start + new Random().nextInt(end-start+1);
+        // swap(a, pivotIndex, end);
+        // pivotIndex = end;
+        // T pivot = a[pivotIndex];
+        // int indexFromLeft = start;
+        // int indexFromRight = end-1;
+
+        //median of first, middle, last
+        int mid = start + (end - start)/2;
+        SortFirstMiddleLast(a, start, end);
+        swap(a, mid, end-1);
+        int pivotIndex = end-1;
+        T pivot = a[end-1];
+        int indexFromLeft = start+1;
+        int indexFromRight = end-2;
+
+        boolean done = false;
         while(!done){
-            while(a[indexFromLeft].compareTo(pivot) <= 0){
+            while(a[indexFromLeft].compareTo(pivot) < 0){
                 indexFromLeft++;
             }
-            while(a[indexFromRight].compareTo(pivot) >= 0){
+
+            while(a[indexFromRight].compareTo(pivot) > 0){
                 indexFromRight--;
-            }            
+            }
+
             if(indexFromLeft < indexFromRight){
                 swap(a, indexFromLeft, indexFromRight);
+                indexFromLeft++;
+                indexFromRight--;
             } else {
                 done = true;
             }
         }
-        swap(a, indexFromLeft, end);
+        swap(a, indexFromLeft, pivotIndex);
+        pivotIndex = indexFromLeft;
+        return pivotIndex;       
+     }
 
-        return indexFromLeft;
+
+    private void order(T[] a, int first, int second){
+        if(a[first].compareTo(a[second]) > 0){
+            swap(a, first, second);
+        }
+    }
+     private void SortFirstMiddleLast(T[] a, int start, int end){
+        int mid = start + (end - start)/2;
+        order(a, start, mid);
+        order(a, mid, end);
+
+        order(a, start, mid);
      }
 
     private static class Student implements Comparable<Student>{
