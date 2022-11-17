@@ -392,7 +392,8 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
                 indexFromLeft++;
             }
 
-            while(a[indexFromRight].compareTo(pivot) > 0){
+            while(indexFromRight > start 
+                && a[indexFromRight].compareTo(pivot) > 0){
                 indexFromRight--;
             }
 
