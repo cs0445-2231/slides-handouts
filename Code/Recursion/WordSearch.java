@@ -51,7 +51,7 @@ public class WordSearch {
                     grid[i][j] = Character.toUpperCase(grid[i][j]);
                     if(solve(i, j, temp)){
                         result = true;
-                        //break;
+                        break;
                     }
                     grid[i][j] = Character.toLowerCase(grid[i][j]);
                 }
@@ -76,12 +76,12 @@ public class WordSearch {
                     System.out.println("Word Found!");
                     printGrid();
                     result = true;
-                   // break;
+                   break;
                 }
                 if (isPrefix(current.toString(), wordToFind)){
                     if(solve(nextRow, nextCol, current)){
                         result = true;
-                       // break;
+                       break;
                     }
                 }
                 

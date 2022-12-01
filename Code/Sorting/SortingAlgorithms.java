@@ -359,7 +359,20 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         } else {
             insertionSort(a, start, end);
         }
-     }     
+     } 
+     
+     public void quickSort2(T[] a, int start, int end){
+        int n = end - start + 1;
+        while(n > THRESHOLD){
+            int pivotIndex = partition(a, start, end);
+            quickSort(a, start, pivotIndex-1);
+            //quickSort(a, pivotIndex+1, end);
+            start = pivotIndex + 1;
+            n = end - start + 1;
+        }
+        insertionSort(a, start, end);
+        }
+     }  
 
      public int partition(T[] a, int start, int end){
         // pivot is last element
