@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Queue;
 import java.util.Random;
 
 public class SortingAlgorithms<T extends Comparable<? super T>> {
@@ -462,6 +463,21 @@ public class SortingAlgorithms<T extends Comparable<? super T>> {
         private Node(T data, Node next){
             this.data = data;
             this.next = next;
+        }
+    }
+
+
+    public void radixSort(int[] a, int maxDigits){
+        Queue<Integer>[] buckets = new Queue[10];
+        for(int i=0; i<maxDigits; i++){
+            for(int j=0; j<10; j++){
+                buckets[j] = new Deque<>();
+            }
+            for(int j=0; j<a.length; j++){
+                //insert a[j] into buckets[ith digit of a[j]]
+            }
+            //remove the items from the buckets in order and place them
+            //into the array a
         }
     }
 }
